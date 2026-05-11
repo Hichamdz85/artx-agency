@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-OLD/
+
+# Vite cache / runtime artifacts
+vite.config.js.timestamp-*.mjs
+*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+*.swo
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Audit artifacts (regenerable)
+audit-screenshots/
+
+# Internal tooling artifacts
+.claude-flow/
+.claude/

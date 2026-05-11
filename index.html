@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#000000" />
+
+    <!-- Primary Meta -->
+    <title>ArtX — Creative Agency · Design that makes brands unforgettable.</title>
+    <meta
+      name="description"
+      content="ArtX is a creative agency. We design brand identities, logos, websites and advertising that make brands unforgettable. Based in Europe, working worldwide."
+    />
+    <meta name="author" content="ArtX Creative Agency" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ArtX — Creative Agency" />
+    <meta
+      property="og:description"
+      content="Design that makes brands unforgettable. Brand identity, logos, websites & advertising."
+    />
+    <meta property="og:url" content="https://artx.agency" />
+    <meta property="og:site_name" content="ArtX" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ArtX — Creative Agency" />
+    <meta name="twitter:description" content="Design that makes brands unforgettable." />
+
+    <!-- Canonical & robots -->
+    <link rel="canonical" href="https://artx.agency/" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Preload the headline weight so LCP doesn't wait for the woff/ttf round-trip -->
+    <link rel="preload" href="/fonts/Grift-Black.ttf" as="font" type="font/ttf" crossorigin />
+
+    <!-- Preconnect to Google Fonts (Montserrat — body copy, non-critical for LCP) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+
+    <!-- Structured data (Organization + WebSite + Services) — visible to crawlers without JS -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://artx.agency/#org",
+            "name": "ArtX Creative Agency",
+            "alternateName": "ArtX",
+            "url": "https://artx.agency",
+            "logo": "https://artx.agency/favicon.svg",
+            "foundingDate": "2019",
+            "slogan": "Design that makes brands unforgettable.",
+            "description": "ArtX is a multidisciplinary creative agency designing brand identities, logos, websites and advertising for ambitious teams across Europe and beyond.",
+            "contactPoint": [{
+              "@type": "ContactPoint",
+              "email": "hello@artx.agency",
+              "contactType": "customer service",
+              "areaServed": ["EU", "Worldwide"],
+              "availableLanguage": ["en"]
+            }]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://artx.agency/#website",
+            "url": "https://artx.agency",
+            "name": "ArtX — Creative Agency",
+            "publisher": { "@id": "https://artx.agency/#org" },
+            "inLanguage": "en"
+          },
+          { "@type": "Service", "name": "Brand Identity & Logo Design", "provider": { "@id": "https://artx.agency/#org" }, "areaServed": "Worldwide", "description": "Identity systems that travel: wordmarks, monograms, type, color, motion and voice." },
+          { "@type": "Service", "name": "Web Design & Development", "provider": { "@id": "https://artx.agency/#org" }, "areaServed": "Worldwide", "description": "High-craft sites that load fast, score 100 on Lighthouse, and convert." },
+          { "@type": "Service", "name": "Advertising Campaigns", "provider": { "@id": "https://artx.agency/#org" }, "areaServed": "Worldwide", "description": "Campaigns rooted in the brand and expressed through every channel." },
+          { "@type": "Service", "name": "Social, Motion & Strategy", "provider": { "@id": "https://artx.agency/#org" }, "areaServed": "Worldwide", "description": "Bringing brands alive in feed — content systems, motion idents and story-driven shorts." }
+        ]
+      }
+    </script>
+  </head>
+  <body class="bg-black text-white antialiased">
+    <div id="root"></div>
+    <noscript>
+      <div style="max-width:720px;margin:80px auto;padding:24px;font-family:system-ui,sans-serif;color:#fff;">
+        <h1 style="font-size:2rem;font-weight:900;letter-spacing:-0.02em;">ArtX — Creative Agency</h1>
+        <p style="margin-top:12px;color:rgba(255,255,255,0.7);font-size:1rem;line-height:1.6;">
+          Design that makes brands unforgettable. We design brand identities, logos, websites
+          and advertising for ambitious teams across Europe and beyond.
+        </p>
+        <p style="margin-top:24px;">
+          This site requires JavaScript for its full interactive experience.
+          To get in touch, email
+          <a href="mailto:hello@artx.agency" style="color:#00A8FF;">hello@artx.agency</a>.
+        </p>
+      </div>
+    </noscript>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
