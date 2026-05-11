@@ -35,3 +35,8 @@ audit-screenshots/
 .claude-flow/
 .claude/
 .vercel
+ruvector.db
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
