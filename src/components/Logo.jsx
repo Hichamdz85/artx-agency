@@ -14,7 +14,7 @@ export default function Logo({ variant = "white", className = "", showR = true }
 
   return (
     <svg
-      viewBox="180 410 720 280"
+      viewBox="170 408 790 254"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
       aria-label="ArtX Creative Agency"

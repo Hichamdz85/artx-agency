@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="relative border-t border-white/[0.06] bg-black">
       <div className="mx-auto flex max-w-7xl flex-col items-start gap-10 px-6 py-14 lg:flex-row lg:items-center lg:justify-between lg:px-10">
         <div className="flex flex-col gap-5">
-          <Logo className="h-7 w-auto" />
+          <Logo className="h-10 w-auto" />
           <p className="max-w-md text-sm text-white/60">
             ArtX™ — Creative energy, made visible. A multidisciplinary studio working with
             ambitious brands across Europe and beyond.

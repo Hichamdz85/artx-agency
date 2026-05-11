@@ -34,7 +34,7 @@ export default function Navbar() {
           aria-label="ArtX home"
           className="block rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-artx-cyan"
         >
-          <Logo className="h-7 w-auto md:h-8" />
+          <Logo className="h-9 w-auto md:h-11" />
         </a>
 
         <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
