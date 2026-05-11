@@ -34,3 +34,4 @@ audit-screenshots/
 # Internal tooling artifacts
 .claude-flow/
 .claude/
+.vercel
