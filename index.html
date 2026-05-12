@@ -34,6 +34,17 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
     <meta name="format-detection" content="telephone=no" />
 
+    <!-- Content Security Policy — locks down sources to: own origin,
+         Google Fonts (CSS + woff2), data: for inline noise SVG, and our
+         own media. 'unsafe-inline' is required for the static JSON-LD
+         script tag below and for framer-motion's runtime inline styles. -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
+    />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
     <!-- Preload the headline weight so LCP doesn't wait for the woff/ttf round-trip -->
     <link rel="preload" href="/fonts/Grift-Black.ttf" as="font" type="font/ttf" crossorigin />
 

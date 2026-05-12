@@ -71,7 +71,7 @@ export default function ServicesSection() {
               transition={{ duration: shouldReduce ? 0 : 0.7 }}
               className="sticky top-32"
             >
-              <span className="text-xs uppercase tracking-[0.3em] text-white/40">
+              <span className="text-xs uppercase tracking-[0.3em] text-white/55">
                 01 — What we do
               </span>
               <h2 className="mt-6 font-display text-5xl font-black leading-[0.95] tracking-tight text-white md:text-6xl">
@@ -127,7 +127,7 @@ export default function ServicesSection() {
                   />
 
                   <div className="relative">
-                    <div className="flex items-center justify-between text-xs font-medium uppercase tracking-[0.25em] text-white/35">
+                    <div className="flex items-center justify-between text-xs font-medium uppercase tracking-[0.25em] text-white/55">
                       <span>{s.n}</span>
                       <span
                         aria-hidden="true"

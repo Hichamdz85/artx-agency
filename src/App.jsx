@@ -1,13 +1,22 @@
+import { lazy, Suspense } from "react";
 import CustomCursor from "./components/CustomCursor.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Hero from "./components/Hero.jsx";
-import ManifestoFlow from "./components/ManifestoFlow.jsx";
 import ServicesSection from "./components/ServicesSection.jsx";
+import CTASection from "./components/CTASection.jsx";
+import Footer from "./components/Footer.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
+import CookieConsent from "./components/CookieConsent.jsx";
+import LegalModals from "./components/LegalModals.jsx";
+
+// Code-split: ManifestoFlow pulls in GSAP + ScrollTrigger (~48 KB gz).
+// Defer it until after the Hero is on screen — keeps initial JS small.
+const ManifestoFlow = lazy(() => import("./components/ManifestoFlow.jsx"));
+
 // TrustedBy (client marquee) intentionally not rendered — placeholder names
 // would mislead visitors. Will be reintroduced in Phase 2 with real clients.
 // import TrustedBy from "./components/TrustedBy.jsx";
-import CTASection from "./components/CTASection.jsx";
-import Footer from "./components/Footer.jsx";
+
 // StructuredData is rendered directly in index.html for SEO without JS execution.
 
 export default function App() {
@@ -26,12 +35,21 @@ export default function App() {
 
       <main id="main" className="relative">
         <Hero />
-        <ManifestoFlow />
+        <Suspense
+          fallback={<div className="min-h-[100svh] bg-black" aria-hidden="true" />}
+        >
+          <ManifestoFlow />
+        </Suspense>
         <ServicesSection />
         <CTASection />
       </main>
 
       <Footer />
+
+      {/* Floating UI: scroll-to-top + cookie banner + legal modals */}
+      <ScrollToTop />
+      <CookieConsent />
+      <LegalModals />
     </>
   );
 }

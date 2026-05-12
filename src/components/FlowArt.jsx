@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
  * Card Stack Reveal — scroll-driven stage transitions for storytelling.
  *
  * MECHANICS (adapted from the original FlowArt pattern):
- *   1. Each <FlowSection> is laid out at min-h-screen.
+ *   1. Each <FlowSection> is laid out at min-h-[100svh].
  *   2. Every section after the first starts rotated +30° around its bottom-left
  *      corner. As the user scrolls it into the bottom of the viewport, the
  *      rotation eases to 0° (mounted to scroll position with `scrub`).
@@ -42,13 +42,13 @@ export function FlowSection({ className, style = {}, children, "aria-label": ari
       data-flow-section
       aria-label={ariaLabel}
       className={cx(
-        "relative isolate min-h-screen w-full overflow-hidden bg-black",
+        "relative isolate min-h-[100svh] w-full overflow-hidden bg-black",
         className,
       )}
     >
       <div
         data-flow-inner
-        className="flow-art-container relative flex min-h-screen w-full flex-col justify-center gap-6 px-[6vw] py-[clamp(2rem,8vw,4vw)] will-change-transform"
+        className="flow-art-container relative flex min-h-[100svh] w-full flex-col justify-center gap-6 px-[6vw] py-[clamp(2rem,8vw,4vw)] will-change-transform"
         style={{ transformOrigin: "bottom left", ...style }}
       >
         {children}

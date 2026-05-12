@@ -30,7 +30,7 @@ export default function Hero() {
     <section
       ref={ref}
       id="top"
-      className="relative isolate flex min-h-screen w-full items-center justify-center overflow-hidden bg-black px-6 pb-16 pt-28 lg:px-10 lg:pb-20"
+      className="relative isolate flex min-h-[100svh] w-full items-center justify-center overflow-hidden bg-black px-6 pb-16 pt-28 lg:px-10 lg:pb-20"
     >
       {heroVideo.enabled && heroVideo.src ? (
         <BackgroundVideo

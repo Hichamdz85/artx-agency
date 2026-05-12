@@ -81,7 +81,7 @@ export default function Navbar() {
           aria-expanded={open}
           aria-controls="mobile-menu"
           onClick={() => setOpen((v) => !v)}
-          className="relative h-10 w-10 rounded-full border border-white/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-artx-cyan md:hidden"
+          className="relative h-11 w-11 rounded-full border border-white/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-artx-cyan md:hidden"
         >
           <span
             aria-hidden="true"

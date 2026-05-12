@@ -5,6 +5,9 @@ node_modules/
 dist/
 dist-OLD/
 
+# Archived TTF originals (replaced by WOFF2 in public/fonts/)
+.fonts-archive/
+
 # Vite cache / runtime artifacts
 vite.config.js.timestamp-*.mjs
 *.local
