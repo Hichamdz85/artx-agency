@@ -1,9 +1,11 @@
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { useRef } from "react";
 import AnimatedBackground from "./AnimatedBackground.jsx";
+import BackgroundVideo from "./BackgroundVideo.jsx";
 import { ArtXMark } from "./Logo.jsx";
 import MagneticButton from "./MagneticButton.jsx";
 import SplitText from "./SplitText.jsx";
+import { heroVideo } from "../lib/heroVideo.js";
 
 export default function Hero() {
   const ref = useRef(null);
@@ -30,7 +32,16 @@ export default function Hero() {
       id="top"
       className="relative isolate flex min-h-screen w-full items-center justify-center overflow-hidden bg-black px-6 pb-16 pt-28 lg:px-10 lg:pb-20"
     >
-      <AnimatedBackground />
+      {heroVideo.enabled && heroVideo.src ? (
+        <BackgroundVideo
+          src={heroVideo.src}
+          srcWebm={heroVideo.srcWebm}
+          poster={heroVideo.poster}
+          overlay={heroVideo.overlay}
+        />
+      ) : (
+        <AnimatedBackground />
+      )}
 
       {/* Background "X" — drifts on scroll. Hidden below lg to reduce visual dominance on tablet. */}
       <motion.div

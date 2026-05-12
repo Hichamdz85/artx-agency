@@ -1,6 +1,7 @@
 import CustomCursor from "./components/CustomCursor.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Hero from "./components/Hero.jsx";
+import ManifestoFlow from "./components/ManifestoFlow.jsx";
 import ServicesSection from "./components/ServicesSection.jsx";
 // TrustedBy (client marquee) intentionally not rendered — placeholder names
 // would mislead visitors. Will be reintroduced in Phase 2 with real clients.
@@ -25,6 +26,7 @@ export default function App() {
 
       <main id="main" className="relative">
         <Hero />
+        <ManifestoFlow />
         <ServicesSection />
         <CTASection />
       </main>
