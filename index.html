@@ -34,19 +34,14 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
     <meta name="format-detection" content="telephone=no" />
 
-    <!-- Content Security Policy — locks down sources to: own origin,
-         Google Fonts (CSS + woff2), data: for inline noise SVG, and our
-         own media. 'unsafe-inline' is required for the static JSON-LD
-         script tag below and for framer-motion's runtime inline styles. -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
-    />
-    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <!-- Note: Content-Security-Policy, X-Content-Type-Options, Referrer-Policy
+         are delivered as HTTP headers via vercel.json so that frame-ancestors
+         and form-action take effect (browsers ignore these directives when set
+         via <meta>). -->
     <meta name="referrer" content="strict-origin-when-cross-origin" />
 
-    <!-- Preload the headline weight so LCP doesn't wait for the woff/ttf round-trip -->
-    <link rel="preload" href="/fonts/Grift-Black.ttf" as="font" type="font/ttf" crossorigin />
+    <!-- Preload the headline weight so LCP doesn't wait for the font round-trip -->
+    <link rel="preload" href="/fonts/Grift-Black.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- Preconnect to Google Fonts (Montserrat — body copy, non-critical for LCP) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
