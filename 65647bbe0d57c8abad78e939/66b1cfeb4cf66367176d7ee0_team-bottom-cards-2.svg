@@ -1,0 +1,39 @@
+<svg width="447" height="178" viewBox="0 0 447 178" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_337_34)">
+<rect width="446" height="178" transform="translate(0.5 -0.0078125)" fill="url(#paint0_linear_337_34)"/>
+<g clip-path="url(#clip1_337_34)">
+<g filter="url(#filter0_f_337_34)">
+<path d="M246.321 145.311C383.727 131.603 756.718 -517.556 737.376 -650.723C714.601 -807.527 619.446 -199.559 429.245 -608.562C291.839 -594.853 118.88 -293.725 138.222 -160.559C157.563 -27.392 108.914 159.02 246.321 145.311Z" fill="url(#paint1_linear_337_34)"/>
+</g>
+<g filter="url(#filter1_f_337_34)">
+<path d="M-0.987732 594.158C-7.40942 445.694 122.385 319.104 103.043 185.937C83.7013 52.7702 66.3755 98.2099 -71.031 111.918C-208.437 125.626 -281.232 278.675 -261.89 411.841C-242.548 545.008 -66.2462 444.912 -0.987732 594.158Z" fill="#74B8EC" fill-opacity="0.76"/>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_337_34" x="-18.5834" y="-832.53" width="912" height="1133.87" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="77.6577" result="effect1_foregroundBlur_337_34"/>
+</filter>
+<filter id="filter1_f_337_34" x="-392.28" y="-34.0116" width="624.603" height="755.482" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="63.6562" result="effect1_foregroundBlur_337_34"/>
+</filter>
+<linearGradient id="paint0_linear_337_34" x1="325.956" y1="130.008" x2="513.094" y2="-53.4353" gradientUnits="userSpaceOnUse">
+<stop stop-color="#1C1C1C"/>
+<stop offset="1" stop-color="#1C1C1C" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="paint1_linear_337_34" x1="107.862" y1="-228.216" x2="852.607" y2="-314.601" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0F4AD2" stop-opacity="0"/>
+<stop offset="1" stop-color="#0FD2C8"/>
+</linearGradient>
+<clipPath id="clip0_337_34">
+<rect width="446" height="178" fill="white" transform="translate(0.5 -0.0078125)"/>
+</clipPath>
+<clipPath id="clip1_337_34">
+<rect width="178" height="447" fill="white" transform="matrix(-4.37114e-08 1 1 4.37114e-08 0 0)"/>
+</clipPath>
+</defs>
+</svg>
