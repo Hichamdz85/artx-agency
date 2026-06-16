@@ -7,7 +7,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/services/:path*", "destination": "/services", "permanent": true },
+    { "source": "/services/:path+", "destination": "/services", "permanent": true },
     { "source": "/industries/:path*", "destination": "/services", "permanent": true },
     { "source": "/solutions/:path*", "destination": "/services", "permanent": true },
     { "source": "/referral", "destination": "/contact", "permanent": true }
