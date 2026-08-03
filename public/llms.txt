@@ -19,6 +19,18 @@ ArtX Creative Agency was founded in 2019 and is based in Europe, working worldwi
 - [Advertising Campaigns](https://artx.agency/#services): Campaigns rooted in the brand, expressed through every channel. Insight → big idea → distinctive creative → measurable lift.
 - [Social, Motion & Strategy](https://artx.agency/#services): Bringing brands alive in feed — content systems, motion idents and story-driven shorts.
 
+## AI automation for logistics
+
+ArtX designs practical AI-powered workflows for logistics, transportation, freight forwarding, import/export and supply-chain companies, built around the systems they already use. We do not replace a client's technology stack.
+
+- [AI Automation for Logistics Operations](https://artx.agency/logistics-automation): Automate repetitive work across email, documents, spreadsheets, customer requests and internal systems.
+- Service pillars: Workflow Automation · Document and Email Processing · AI-Assisted Customer Operations
+- Common use cases: automated RFQ processing, shipment status requests, document data extraction, email classification and routing, CRM and spreadsheet updates, customer and supplier follow-ups, operations reporting, internal knowledge assistant.
+- Typical clients: freight forwarders, transportation companies, third-party logistics providers, warehousing, customs services, distribution and e-commerce logistics teams of 10 to 250 employees.
+- Engagement model: free workflow audit, then a focused pilot on one high-volume workflow. Pilots may often be delivered in two to six weeks depending on complexity, integrations and approvals — an indication, not a guarantee.
+- Human oversight: approval steps are kept wherever accuracy, cost or customer communication matters.
+- Request a free workflow audit: https://artx.agency/logistics-automation#lead-form
+
 ## Contact
 
 - Email: hello@artx.agency

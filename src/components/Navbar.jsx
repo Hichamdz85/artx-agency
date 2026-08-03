@@ -4,12 +4,24 @@ import Logo from "./Logo.jsx";
 // IA simplified: the previous "Work" and "About" links pointed to anchors that
 // did not exist (or duplicated #services). They will return when the matching
 // sections (Portfolio + About) are added in Phase 2.
-const nav = [
+const defaultNav = [
   { label: "Services", href: "#services" },
   { label: "Contact", href: "#contact" },
 ];
 
-export default function Navbar() {
+/**
+ * Site header.
+ *
+ * The defaults reproduce the homepage exactly; landing pages (e.g.
+ * /logistics-automation) pass their own anchors and call-to-action so the
+ * same header can be reused without forking it.
+ */
+export default function Navbar({
+  links = defaultNav,
+  homeHref = "#top",
+  ctaLabel = "Start a project",
+  ctaHref = "#contact",
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -30,7 +42,7 @@ export default function Navbar() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
         <a
-          href="#top"
+          href={homeHref}
           aria-label="ArtX home"
           className="block rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-artx-cyan"
         >
@@ -38,7 +50,7 @@ export default function Navbar() {
         </a>
 
         <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
-          {nav.map((item) => (
+          {links.map((item) => (
             <a
               key={item.label}
               href={item.href}
@@ -52,12 +64,12 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="#contact"
+            href={ctaHref}
             data-cursor="view"
             data-cursor-label="Let's talk"
             className="ml-3 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black transition-transform hover:scale-[1.03] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-artx-cyan"
           >
-            Start a project
+            {ctaLabel}
             <svg
               width="14"
               height="14"
@@ -107,7 +119,7 @@ export default function Navbar() {
       >
         <div className="overflow-hidden">
           <div className="flex flex-col gap-1 px-6 py-6">
-            {nav.map((item) => (
+            {links.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
@@ -118,11 +130,11 @@ export default function Navbar() {
               </a>
             ))}
             <a
-              href="#contact"
+              href={ctaHref}
               onClick={() => setOpen(false)}
               className="mt-3 inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-artx-cyan"
             >
-              Start a project →
+              {ctaLabel} →
             </a>
           </div>
         </div>
