@@ -71,6 +71,33 @@ const CONTROL_RE = new RegExp("[\\u0000-\\u0008\\u000B\\u000C\\u000E-\\u001F\\u0
 /** Minimum time a human needs to fill the form, in milliseconds. */
 const MIN_ELAPSED_MS = 3000;
 
+/**
+ * Response copy per page language. The landing page sends `locale` from its
+ * own <html lang>, so a visitor on the French page reads French errors and
+ * receives a French confirmation.
+ */
+const MESSAGES = {
+  en: {
+    methodNotAllowed: "Method not allowed.",
+    invalidBody: "Invalid request body.",
+    tooMany: "Too many requests. Please try again in a few minutes.",
+    invalidFields: "Some required information is missing or invalid.",
+    confirmSubject: "We received your workflow audit request - ArtX",
+  },
+  fr: {
+    methodNotAllowed: "Methode non autorisee.",
+    invalidBody: "Requete invalide.",
+    tooMany: "Trop de demandes. Merci de reessayer dans quelques minutes.",
+    invalidFields: "Des informations obligatoires sont manquantes ou invalides.",
+    confirmSubject: "Nous avons bien recu votre demande d'audit - ArtX",
+  },
+};
+
+/** Normalise the submitted page language to a supported locale. */
+function pickLocale(value) {
+  return typeof value === "string" && value.toLowerCase().startsWith("fr") ? "fr" : "en";
+}
+
 /* ---------------------------------------------------------------
    Helpers
    --------------------------------------------------------------- */
@@ -183,24 +210,40 @@ function notificationHtml(lead, meta) {
         : ""
     }
     <p style="margin:26px 0 0;padding-top:16px;border-top:1px solid #eee;font-size:12px;color:#999;">
-      Received ${escapeHtml(meta.receivedAt)} &middot; consent given on submission
+      Received ${escapeHtml(meta.receivedAt)} &middot; page language ${escapeHtml(String(meta.locale).toUpperCase())} &middot; consent given on submission
     </p>
   </div>
 </body></html>`;
 }
 
-function confirmationHtml(lead) {
+const CONFIRMATION_COPY = {
+  en: {
+    greeting: (name) => `Thank you, ${name}.`,
+    body: `We have received your workflow audit request. We will review the information
+      you sent and come back to you regarding the next step.`,
+    invite: `In the meantime, if you can share an example document or e-mail that
+      represents the process, simply reply to this message.`,
+  },
+  fr: {
+    greeting: (name) => `Merci, ${name}.`,
+    body: `Nous avons bien recu votre demande d'audit de processus. Nous allons examiner
+      les informations transmises et revenir vers vous pour la suite.`,
+    invite: `Entre-temps, si vous pouvez nous transmettre un document ou un e-mail
+      representatif du processus, il vous suffit de repondre a ce message.`,
+  },
+};
+
+function confirmationHtml(lead, locale) {
+  const copy = CONFIRMATION_COPY[locale] || CONFIRMATION_COPY.en;
   return `<!doctype html>
-<html><body style="margin:0;padding:24px;background:#f6f6f6;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;">
+<html lang="${locale}"><body style="margin:0;padding:24px;background:#f6f6f6;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;">
   <div style="max-width:560px;margin:0 auto;background:#fff;border-radius:12px;padding:28px;">
-    <h1 style="margin:0 0 14px;font-size:20px;color:#111;">Thank you, ${escapeHtml(lead.firstName)}.</h1>
+    <h1 style="margin:0 0 14px;font-size:20px;color:#111;">${escapeHtml(copy.greeting(lead.firstName))}</h1>
     <p style="margin:0 0 14px;font-size:15px;line-height:1.6;color:#333;">
-      We have received your workflow audit request. We will review the information you sent
-      and come back to you regarding the next step.
+      ${copy.body}
     </p>
     <p style="margin:0 0 14px;font-size:15px;line-height:1.6;color:#333;">
-      In the meantime, if you can share an example document or e-mail that represents the
-      process, simply reply to this message.
+      ${copy.invite}
     </p>
     <p style="margin:22px 0 0;font-size:13px;color:#888;">ArtX &mdash; artx.agency</p>
   </div>
@@ -213,9 +256,14 @@ function confirmationHtml(lead) {
 export default async function handler(req, res) {
   res.setHeader("Cache-Control", "no-store");
 
+  // Locale is resolved before anything else so even a rejected request answers
+  // in the language of the page the visitor is looking at.
+  let locale = pickLocale(req.body && req.body.locale);
+  let t = MESSAGES[locale];
+
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
-    return res.status(405).json({ ok: false, message: "Method not allowed." });
+    return res.status(405).json({ ok: false, message: t.methodNotAllowed });
   }
 
   let body = req.body;
@@ -223,12 +271,14 @@ export default async function handler(req, res) {
     try {
       body = JSON.parse(body);
     } catch {
-      return res.status(400).json({ ok: false, message: "Invalid request body." });
+      return res.status(400).json({ ok: false, message: t.invalidBody });
     }
   }
   if (!body || typeof body !== "object") {
-    return res.status(400).json({ ok: false, message: "Invalid request body." });
+    return res.status(400).json({ ok: false, message: t.invalidBody });
   }
+  locale = pickLocale(body.locale);
+  t = MESSAGES[locale];
 
   // 1 - Spam gates. Both answer 200 so bots learn nothing from the response.
   if (clean(body.faxNumber, 80)) {
@@ -245,7 +295,7 @@ export default async function handler(req, res) {
   if (rateLimited(ip)) {
     return res
       .status(429)
-      .json({ ok: false, message: "Too many requests. Please try again in a few minutes." });
+      .json({ ok: false, message: t.tooMany });
   }
 
   // 3 - Sanitize
@@ -267,12 +317,12 @@ export default async function handler(req, res) {
   if (errors.length) {
     return res.status(400).json({
       ok: false,
-      message: "Some required information is missing or invalid.",
+      message: t.invalidFields,
       fields: [...new Set(errors)],
     });
   }
 
-  const meta = { receivedAt: new Date().toISOString(), ip };
+  const meta = { receivedAt: new Date().toISOString(), ip, locale };
 
   // 5 - Deliver
   const to = process.env.LEAD_NOTIFY_TO;
@@ -286,7 +336,7 @@ export default async function handler(req, res) {
         to,
         from,
         replyTo: lead.workEmail,
-        subject: `Workflow audit request - ${lead.company} (${lead.businessType})`,
+        subject: `Workflow audit request [${locale.toUpperCase()}] - ${lead.company} (${lead.businessType})`,
         html: notificationHtml(lead, meta),
       });
       delivered = true;
@@ -296,8 +346,8 @@ export default async function handler(req, res) {
           await sendEmail({
             to: lead.workEmail,
             from,
-            subject: "We received your workflow audit request - ArtX",
-            html: confirmationHtml(lead),
+            subject: t.confirmSubject,
+            html: confirmationHtml(lead, locale),
           });
         } catch (error) {
           console.warn("[logistics-lead] confirmation e-mail failed:", error.message);
@@ -315,6 +365,7 @@ export default async function handler(req, res) {
       "[logistics-lead] delivered",
       JSON.stringify({
         at: meta.receivedAt,
+        locale,
         emailDomain: emailDomain(lead.workEmail),
         country: lead.country,
         companySize: lead.companySize,

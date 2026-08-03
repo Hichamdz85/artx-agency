@@ -1,8 +1,49 @@
 # /logistics-automation - setup notes
 
-The page is live-ready as it stands. Everything below is a value only the site
-owner can supply. Nothing here blocks the page from working: each item has a
-safe fallback, and no unverified claim is ever shown to a visitor.
+The page ships in two languages and is live-ready as it stands. Everything
+below is a value only the site owner can supply. Nothing here blocks the page
+from working: each item has a safe fallback, and no unverified claim is ever
+shown to a visitor.
+
+| Language | URL | File |
+|---|---|---|
+| English | `/logistics-automation` | `logistics-automation.html` |
+| French | `/automatisation-logistique` | `automatisation-logistique.html` |
+
+---
+
+## 0 - The two language versions
+
+Both files are the same page. They share the markup, the CSS classes, the
+scoped styles and the form logic; only the copy differs. Structural parity is
+enforced at build time - identical counts of `div`, `section`, `h2`, `h3`,
+`details`, `input`, `select` and `option`.
+
+- **URLs are localised**, because a French buyer searches "automatisation
+  logistique", not "logistics automation".
+- **Each page declares the pair**: `hreflang="en"`, `hreflang="fr"` and
+  `x-default` (pointing at English) on both sides, plus `og:locale`
+  (`en_GB` / `fr_BE`) and its alternate. `sitemap.xml` repeats the pairing
+  through `xhtml:link`, which is what Google actually reads.
+- **`<html lang>` is correct on each side** (`en` / `fr`), and the JSON-LD
+  graph - WebPage, BreadcrumbList, Service, FAQPage, all 11 questions - is
+  fully translated with `inLanguage` set accordingly.
+- **A switcher sits above the hero headline** on both pages: two pills,
+  `aria-current="page"` on the active one, 44px tap targets on mobile.
+- **Select options always submit English values.** A French visitor sees
+  "Belgique" and "Transit et commission de transport"; the lead that reaches
+  your inbox says `Belgium` and `Freight forwarding`. Lead data is therefore
+  identical whichever language was used, so it can be filtered and reported
+  on as one dataset.
+- **The form posts a `locale` field** taken from `<html lang>`. The API uses
+  it for validation errors, the confirmation e-mail and a `[FR]` / `[EN]` tag
+  in the notification subject, so you know which language to reply in.
+
+### Editing the copy later
+
+Change the English page, then regenerate the French one - do not hand-edit
+both. If you only need a small wording change, edit the same place in both
+files; the two documents are line-comparable.
 
 ---
 
