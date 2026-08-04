@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Votre demande a bien été reçue | ArtX</title>
+<meta name="description" content="Votre demande d'audit de workflow logistique a bien été reçue par ArtX. Nous allons l'examiner et vous contacter au sujet des prochaines étapes."/>
+<meta name="robots" content="noindex,follow"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link href="artx-assets/favicon.svg" rel="shortcut icon" type="image/x-icon"/>
+<link href="artx-assets/favicon.svg" rel="apple-touch-icon"/>
+<link href="https://www.artx.agency/automatisation-logistique-merci" rel="canonical"/>
+<!--
+  Page de confirmation autonome pour les liens directs/partageables apres
+  l'envoi du formulaire d'audit de workflow sur /automatisation-logistique.
+  Cette page vient en complement (et ne remplace pas) l'etat de succes
+  affiche directement dans le formulaire sur cette page.
+
+  Note de routage: fichier place a plat a la racine du depot plutot que
+  dans automatisation-logistique/merci.html. automatisation-logistique.html
+  (un fichier) et un eventuel automatisation-logistique/ (un dossier)
+  peuvent coexister sur le disque sans conflit, mais le routage Vercel de
+  ce depot repose sur cleanUrls:true avec framework:null et aucune etape
+  de build, et il n'y avait pas de moyen sur de confirmer depuis le depot
+  seul qu'une requete vers /automatisation-logistique continuerait a
+  resoudre sans ambiguite vers automatisation-logistique.html une fois un
+  dossier de meme nom present a cote. Conformement a la clause de repli
+  prevue par cette tache, le nom de fichier plus simple et non ambigu a
+  ete utilise a la place. URL en ligne : /automatisation-logistique-merci.
+-->
+<style>
+@font-face{font-family:Gordita;src:url(/65647bbe0d57c8abad78e939/68ff3721c2bed2aa33a80a83_Gordita-Regular.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap;}
+@font-face{font-family:Gordita;src:url(/65647bbe0d57c8abad78e939/68ff3614f18b504c3644a371_Gordita-Medium.woff2) format("woff2");font-weight:500;font-style:normal;font-display:swap;}
+:root{color-scheme:only dark;}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:#060609;
+  color:#fff;
+  font-family:Gordita,Arial,sans-serif;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:64px 20px;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+.ty-logo{display:inline-flex;margin-bottom:40px;}
+.ty-logo img{height:22px;width:auto;display:block;}
+.ty-card{
+  width:100%;
+  max-width:560px;
+  background:#141515;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:22px;
+  padding:48px 40px;
+  text-align:center;
+}
+.ty-check{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  background:rgba(208,246,1,.12);
+  border:1px solid rgba(208,246,1,.35);
+  margin-bottom:24px;
+}
+.ty-check svg{display:block;}
+.ty-card h1{
+  font-size:clamp(24px,3.4vw,30px);
+  line-height:1.22;
+  font-weight:500;
+  letter-spacing:-.01em;
+  margin:0 0 16px;
+}
+.ty-card p{
+  font-size:16px;
+  line-height:1.65;
+  color:rgba(255,255,255,.72);
+  margin:0 0 32px;
+}
+.ty-actions{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.btn,.btn-outline{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  width:100%;
+  font-weight:600;
+  padding:16px 28px;
+  border-radius:40px;
+  text-transform:uppercase;
+  font-size:13px;
+  letter-spacing:.04em;
+  text-decoration:none;
+  border:1px solid transparent;
+}
+.btn{background:#D0F601;color:#060609;}
+.btn-outline{background:transparent;color:#fff;border-color:rgba(255,255,255,.2);}
+.ty-foot{
+  margin-top:32px;
+  font-size:13px;
+  color:rgba(255,255,255,.5);
+  text-align:center;
+}
+.ty-foot a{color:rgba(255,255,255,.5);}
+@media(max-width:560px){
+  .ty-card{padding:36px 24px;}
+}
+</style>
+</head>
+<body>
+<div class="ty-page">
+  <a class="ty-logo" href="/" aria-label="Accueil ArtX"><img src="artx-assets/artx-logo-white.svg" alt="ArtX"/></a>
+  <div class="ty-card">
+    <span class="ty-check" aria-hidden="true">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 12.5L10 17.5L19 7.5" stroke="#D0F601" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+    <h1>Votre demande de workflow a bien été reçue</h1>
+    <p>Merci. Nous allons examiner les informations que vous avez fournies et vous contacter au sujet de la prochaine étape appropriée.</p>
+    <div class="ty-actions">
+      <a class="btn" href="https://calendly.com/khelifi-consulting/30min" target="_blank" rel="noopener noreferrer">Réserver un échange de 30 minutes</a>
+      <a class="btn-outline" href="/automatisation-logistique">Retour à la page Automatisation Logistique</a>
+    </div>
+  </div>
+  <p class="ty-foot">ArtX &middot; Bruxelles, Belgique &middot; <a href="mailto:hello@artx.agency">hello@artx.agency</a></p>
+</div>
+</body>
+</html>
