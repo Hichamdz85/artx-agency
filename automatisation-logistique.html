@@ -134,15 +134,18 @@
 .artx-pg a{color:#D0F601;text-decoration:none;}
 .artx-pg ul{margin:0 0 18px;padding-left:20px;color:rgba(255,255,255,.72);line-height:1.75;}
 .artx-pg .card{background:#141515;border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:34px;}
-.artx-pg .btn{display:inline-flex;align-items:center;gap:10px;background:#D0F601;color:#060609!important;font-weight:600;padding:16px 32px;border-radius:40px;text-transform:uppercase;font-size:14px;letter-spacing:.04em;border:0;cursor:pointer;font-family:inherit;}
 .artx-pg .muted{color:rgba(255,255,255,.58);font-size:14px;}
 .sr-only-la{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
 
 /* ---- page-specific base ---- */
-.la .btn-ghost{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.22);color:#fff!important;font-weight:600;padding:16px 32px;border-radius:40px;text-transform:uppercase;font-size:14px;letter-spacing:.04em;transition:border-color .25s,background-color .25s;background:none;cursor:pointer;font-family:inherit;}
-.la .btn-ghost:hover{border-color:rgba(255,255,255,.58);background:rgba(255,255,255,.04);}
-.la .btn:hover{background:#e4ff5c;}
-.la .btn:focus-visible,.la .btn-ghost:focus-visible,.la a:focus-visible,.la button:focus-visible,.la summary:focus-visible,.la input:focus-visible,.la select:focus-visible,.la textarea:focus-visible{outline:2px solid #D0F601;outline-offset:3px;}
+/* .btn / .btn-ghost are reused by the header and mobile-menu CTAs, which sit
+   outside the .artx-pg/.la wrapper, so these rules must apply page-wide.
+   This file has no other component named .btn/.btn-ghost. */
+.btn{display:inline-flex;align-items:center;gap:10px;background:#D0F601;color:#060609!important;font-weight:600;padding:16px 32px;border-radius:40px;text-transform:uppercase;font-size:14px;letter-spacing:.04em;border:0;cursor:pointer;font-family:inherit;}
+.btn-ghost{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.22);color:#fff!important;font-weight:600;padding:16px 32px;border-radius:40px;text-transform:uppercase;font-size:14px;letter-spacing:.04em;transition:border-color .25s,background-color .25s;background:none;cursor:pointer;font-family:inherit;}
+.btn-ghost:hover{border-color:rgba(255,255,255,.58);background:rgba(255,255,255,.04);}
+.btn:hover{background:#e4ff5c;}
+.btn:focus-visible,.btn-ghost:focus-visible,.la a:focus-visible,.la button:focus-visible,.la summary:focus-visible,.la input:focus-visible,.la select:focus-visible,.la textarea:focus-visible,.la-header a:focus-visible,.la-header button:focus-visible,.la-footer a:focus-visible{outline:2px solid #D0F601;outline-offset:3px;}
 .la .actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:0 0 18px;}
 .la section[id]{scroll-margin-top:112px;}
 .la .sec{margin:96px 0 0;}
@@ -156,10 +159,10 @@
 .la .disclaimer p{margin:0;font-size:14px;color:rgba(255,255,255,.62);line-height:1.6;}
 
 /* language switch (shared pattern reused in header/footer) */
-.la .langsw{display:flex;width:max-content;gap:2px;padding:3px;border:1px solid rgba(255,255,255,.14);border-radius:999px;background:rgba(255,255,255,.03);}
-.la .langsw a{display:inline-block;padding:6px 15px;border-radius:999px;font-size:13px;font-weight:600;letter-spacing:.05em;color:rgba(255,255,255,.62);text-decoration:none;transition:color .2s ease,background-color .2s ease;}
-.la .langsw a:hover{color:#fff;}
-.la .langsw a[aria-current="page"]{background:#D0F601;color:#060609;}
+.langsw{display:flex;width:max-content;gap:2px;padding:3px;border:1px solid rgba(255,255,255,.14);border-radius:999px;background:rgba(255,255,255,.03);}
+.langsw a{display:inline-block;padding:6px 15px;border-radius:999px;font-size:13px;font-weight:600;letter-spacing:.05em;color:rgba(255,255,255,.62);text-decoration:none;transition:color .2s ease,background-color .2s ease;}
+.langsw a:hover{color:#fff;}
+.langsw a[aria-current="page"]{background:#D0F601;color:#060609;}
 
 /* ============================================================
    HEADER
@@ -418,8 +421,8 @@
 
 /* French copy runs longer than English; keep buttons/labels/pills from
    collapsing their line-height on wrap. */
-.la .btn,.la .btn-ghost,.demo-btn{line-height:1.25;}
-.la .eyebrow,.la label.fl,.la .langsw a,.la-nav-desktop a{line-height:1.35;}
+.btn,.btn-ghost,.demo-btn{line-height:1.25;}
+.la .eyebrow,.la label.fl,.langsw a,.la-nav-desktop a{line-height:1.35;}
 </style>
 <div class="wrap">
 
