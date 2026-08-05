@@ -27,35 +27,32 @@ const LIMITS = {
   firstName: 80,
   lastName: 80,
   workEmail: 160,
-  company: 160,
+  companyName: 160,
   jobTitle: 120,
-  website: 200,
+  companyWebsite: 200,
   country: 80,
   companySize: 40,
   businessType: 60,
-  challenge: 2000,
-  systems: 500,
-  frequency: 60,
-  contactMethod: 40,
+  workflowChallenge: 2000,
+  toolsInvolved: 500,
+  taskFrequency: 60,
+  preferredContact: 40,
   phone: 40,
   meetingLanguage: 40,
-  notes: 1500,
+  additionalInfo: 1500,
 };
 
+/**
+ * Required fields for the shortened workflow-audit form. privacyConsent is
+ * a boolean and is validated separately (see step 4 below), not through
+ * this string-length list.
+ */
 const REQUIRED = [
   "firstName",
-  "lastName",
   "workEmail",
-  "company",
-  "jobTitle",
-  "website",
-  "country",
-  "companySize",
-  "businessType",
-  "challenge",
-  "systems",
-  "frequency",
-  "contactMethod",
+  "companyName",
+  "workflowChallenge",
+  "preferredContact",
 ];
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
@@ -180,33 +177,39 @@ function notificationHtml(lead, meta) {
          </tr>`
       : "";
 
+  const fullName = [lead.firstName, lead.lastName].filter(Boolean).join(" ");
+
   return `<!doctype html>
 <html><body style="margin:0;padding:24px;background:#f6f6f6;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;">
   <div style="max-width:640px;margin:0 auto;background:#fff;border-radius:12px;padding:28px;">
     <p style="margin:0 0 4px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#888;">ArtX &middot; logistics-automation</p>
     <h1 style="margin:0 0 20px;font-size:20px;color:#111;">Free workflow audit request</h1>
     <table style="width:100%;border-collapse:collapse;font-size:14px;line-height:1.55;">
-      ${row("Name", `${lead.firstName} ${lead.lastName}`)}
+      ${row("Name", fullName)}
       ${row("Work e-mail", lead.workEmail)}
       ${row("Phone", lead.phone)}
       ${row("Job title", lead.jobTitle)}
-      ${row("Company", lead.company)}
-      ${row("Website", lead.website)}
+      ${row("Company", lead.companyName)}
+      ${row("Website", lead.companyWebsite)}
       ${row("Country", lead.country)}
       ${row("Company size", lead.companySize)}
       ${row("Business type", lead.businessType)}
-      ${row("Task frequency", lead.frequency)}
-      ${row("Preferred contact", lead.contactMethod)}
+      ${row("Task frequency", lead.taskFrequency)}
+      ${row("Preferred contact", lead.preferredContact)}
       ${row("Meeting language", lead.meetingLanguage)}
     </table>
-    <h2 style="margin:26px 0 8px;font-size:14px;color:#111;">Main workflow challenge</h2>
-    <p style="margin:0;font-size:14px;line-height:1.6;color:#333;white-space:pre-wrap;">${escapeHtml(lead.challenge)}</p>
-    <h2 style="margin:22px 0 8px;font-size:14px;color:#111;">Systems currently used</h2>
-    <p style="margin:0;font-size:14px;line-height:1.6;color:#333;">${escapeHtml(lead.systems)}</p>
+    <h2 style="margin:26px 0 8px;font-size:14px;color:#111;">Workflow to improve</h2>
+    <p style="margin:0;font-size:14px;line-height:1.6;color:#333;white-space:pre-wrap;">${escapeHtml(lead.workflowChallenge)}</p>
     ${
-      lead.notes
+      lead.toolsInvolved
+        ? `<h2 style="margin:22px 0 8px;font-size:14px;color:#111;">Tools involved</h2>
+           <p style="margin:0;font-size:14px;line-height:1.6;color:#333;">${escapeHtml(lead.toolsInvolved)}</p>`
+        : ""
+    }
+    ${
+      lead.additionalInfo
         ? `<h2 style="margin:22px 0 8px;font-size:14px;color:#111;">Additional information</h2>
-           <p style="margin:0;font-size:14px;line-height:1.6;color:#333;white-space:pre-wrap;">${escapeHtml(lead.notes)}</p>`
+           <p style="margin:0;font-size:14px;line-height:1.6;color:#333;white-space:pre-wrap;">${escapeHtml(lead.additionalInfo)}</p>`
         : ""
     }
     <p style="margin:26px 0 0;padding-top:16px;border-top:1px solid #eee;font-size:12px;color:#999;">
@@ -281,7 +284,7 @@ export default async function handler(req, res) {
   t = MESSAGES[locale];
 
   // 1 - Spam gates. Both answer 200 so bots learn nothing from the response.
-  if (clean(body.faxNumber, 80)) {
+  if (clean(body.refCode, 80)) {
     console.warn("[logistics-lead] honeypot triggered");
     return res.status(200).json({ ok: true });
   }
@@ -310,9 +313,9 @@ export default async function handler(req, res) {
     if (!lead[field]) errors.push(field);
   }
   if (lead.workEmail && !EMAIL_RE.test(lead.workEmail)) errors.push("workEmail");
-  if (lead.website && !WEBSITE_RE.test(lead.website)) errors.push("website");
-  if (lead.challenge && lead.challenge.length < 20) errors.push("challenge");
-  if (body.consent !== true) errors.push("consent");
+  if (lead.companyWebsite && !WEBSITE_RE.test(lead.companyWebsite)) errors.push("companyWebsite");
+  if (lead.workflowChallenge && lead.workflowChallenge.length < 20) errors.push("workflowChallenge");
+  if (body.privacyConsent !== true) errors.push("privacyConsent");
 
   if (errors.length) {
     return res.status(400).json({
@@ -336,7 +339,7 @@ export default async function handler(req, res) {
         to,
         from,
         replyTo: lead.workEmail,
-        subject: `Workflow audit request [${locale.toUpperCase()}] - ${lead.company} (${lead.businessType})`,
+        subject: `Workflow audit request [${locale.toUpperCase()}] - ${lead.companyName}${lead.businessType ? ` (${lead.businessType})` : ""}`,
         html: notificationHtml(lead, meta),
       });
       delivered = true;
@@ -370,7 +373,7 @@ export default async function handler(req, res) {
         country: lead.country,
         companySize: lead.companySize,
         businessType: lead.businessType,
-        frequency: lead.frequency,
+        taskFrequency: lead.taskFrequency,
       }),
     );
   } else {
